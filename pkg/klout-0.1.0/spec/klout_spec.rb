@@ -3,11 +3,11 @@ require File.dirname(__FILE__) + '/spec_helper.rb'
 describe "Klout" do
   
   before do
-    Klout.api_key = "4443c7b92f123aba372f029ff362e3eb"
+    Klout.api_key = ""
   end
   
   it "should assign the correct API key" do
-    Klout.api_key.should == "4443c7b92f123aba372f029ff362e3eb"
+    Klout.api_key.should == ""
   end
   
   context "score request" do
@@ -37,7 +37,6 @@ describe "Klout" do
         Klout.profile('jasontorres')
       }
       @profile_result ||= @profile_request.call
-      puts @profile_result.inspect
     end
     
     it "should have a profile" do
