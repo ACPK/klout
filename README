@@ -1,3 +1,37 @@
+Update the lib file according to the new API of Klout, and handle requests of multiple users ( up to 5).
+-----------------------------------------
+Usage:
+---------
+>> Klout.api_key = "yourkloutapikey"
+>> Klout.score("jasontorres")
+=> {"status" => 200, "users" => [{"twitter_screen_name"=>"jasontorres", "kscore"=>29.89}]}
+>> Klout.profile("jasontorres")
+=> {"status" => 200, "users" => [{"twitter_id"=>"406073",
+                                  "twitter_screen_name"=>"jasontorres",
+                                  "score"=>{"kscore"=>29.89, "slope"=>0,
+                                  "description"=>"is influential to a tightly formed network that is growing larger.",
+                                  "kclass_id"=>11, "kclass"=>"Specialist",
+                                  "kclass_description"=>"You may not be a celebrity, but within your area of expertise your opinion is second to none. Your content is likely focused around a specific topic or industry with a focused, highly-engaged audience.",
+                                  "kscore_description"=>"jasontorres has a low level of influence.",
+                                  "network_score"=>20.25,
+                                  "amplification_score"=>15.27,
+                                  "true_reach"=>195}}]}
+
+#Handling of invalid/inactive username 
+>> Klout.score("very_new_user")
+=> {"status" => 404}
+>> Klout.score("very_new_user")
+=> {"status" => 404}
+
+#Ignore invalid/inactive usernames in array
+>> Klout.score(["very_new_user", "twitter", "twitter_es", "twitterapi", "twittermobile"].join(","))
+ => {"status"=>200, "users"=>[{"twitter_screen_name"=>"twitter", "kscore"=>76.88},
+                              {"twitter_screen_name"=>"twitter_es", "kscore"=>70.33},
+                              {"twitter_screen_name"=>"twitterapi", "kscore"=>68.3},
+                              {"twitter_screen_name"=>"twittermobile", "kscore"=>61.17}]}
+---------------------------------------------------------------------------------------
+
+
 Klout measures influence on topics across the social web to find the people the world listens to
 
 See http://klout.com for more information about their service

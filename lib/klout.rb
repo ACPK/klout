@@ -18,7 +18,7 @@ Klout.score('jasontorres')
 
 
 class Klout
-  VERSION = 'beta-1.0.0'
+  VERSION = '0.1.1'
   class << self
     @@base_host = "klout.com"
     
@@ -34,7 +34,6 @@ class Klout
 
     def score(usernames)
       request_uri = "http://api.klout.com/1/klout.json?key=#{@@api_key}&users=#{usernames}"
-      p request_uri
       return request(request_uri)
     end
     
@@ -47,13 +46,10 @@ class Klout
       begin
         url = URI.parse(request_uri)
         response = JSON.parse(Net::HTTP.get(url))
-        case response["status"]
-          when 200 || 202
-            response
-          when 404
-            0
-          else
-            nil
+        if response["status"] =~ /\A20/
+          response
+        else
+          nil
         end
       rescue => error
         raise error
