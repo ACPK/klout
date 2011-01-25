@@ -18,7 +18,7 @@ Klout.score('jasontorres')
 
 
 class Klout
-  VERSION = '0.0.1'
+  VERSION = 'beta-1.0.0'
   class << self
     @@base_host = "klout.com"
     
@@ -32,38 +32,32 @@ class Klout
       @@api_key
     end
 
-    def score(username)
-      request_uri = "http://klout.com/api/twitter/1/klout/#{@@api_key}/#{username}.json"
+    def score(usernames)
+      request_uri = "http://api.klout.com/1/klout.json?key=#{@@api_key}&users=#{usernames}"
+      p request_uri
       return request(request_uri)
     end
     
-    def profile(username)
-      request_uri = "http://klout.com/api/twitter/1.1/profiledetail/#{@@api_key}/#{username}.json"
+    def profile(usernames)
+      request_uri = "http://api.klout.com/1/users/show.json?key=#{@@api_key}&users=#{usernames}"
       return request(request_uri)
     end
     
     def request(request_uri)
-      url = URI.parse(request_uri)
-      response = Net::HTTP.start(url.host, url.port) { |http|
-        http.get(url.path)
-      }
-      
-      case response
-        when Net::HTTPSuccess
-          if response.body
-            begin 
-              JSON.parse(response.body)
-            rescue Exception => e
-              puts e.backtrace
-              false
-            end
-          end
-        else
-          response.error!
+      begin
+        url = URI.parse(request_uri)
+        response = JSON.parse(Net::HTTP.get(url))
+        case response["status"]
+          when 200 || 202
+            response
+          when 404
+            0
+          else
+            nil
+        end
+      rescue => error
+        raise error
       end
     end
-      
-      
-    
   end
 end
