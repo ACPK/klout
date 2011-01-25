@@ -46,7 +46,7 @@ class Klout
       begin
         url = URI.parse(request_uri)
         response = JSON.parse(Net::HTTP.get(url))
-        if response["status"] =~ /\A20/
+        if response["status"] == 200
           response
         else
           nil
