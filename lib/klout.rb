@@ -1,3 +1,5 @@
+require 'uri'
+require 'net/http'
 require 'rubygems'
 require 'json'
 $:.unshift(File.dirname(__FILE__)) unless
