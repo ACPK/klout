@@ -61,6 +61,27 @@ describe "Klout" do
     
   end
   
+  context "profile request influenced by" do
+    before do
+      @profile_request ||= lambda {
+        Klout.influenced_by('markmcspadden')
+      }
+      @profile_result ||= @profile_request.call
+    end
+    
+    it "should have a profile" do
+      @profile_result.should be_instance_of(Hash)
+    end
+    
+    it "should have the required keys" do      
+      @profile_result['user'] = @profile_result["users"].first["influencers"].first
+      @profile_result.has_key?('user').should == true
+      @profile_result['user'].has_key?('twitter_screen_name').should == true
+      @profile_result['user'].has_key?('kscore').should == true
+    end
+    
+  end
+  
   
   
   

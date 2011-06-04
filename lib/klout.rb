@@ -44,6 +44,11 @@ class Klout
       return request(request_uri)
     end
     
+    def influenced_by(usernames)
+      request_uri = "http://api.klout.com/1/soi/influenced_by.json?key=#{@@api_key}&users=#{usernames}"
+      return request(request_uri)
+    end
+    
     def request(request_uri)
       begin
         url = URI.parse(request_uri)
