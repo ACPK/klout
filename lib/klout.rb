@@ -49,6 +49,11 @@ class Klout
       return request(request_uri)
     end
     
+    def influencer_of(usernames)
+      request_uri = "http://api.klout.com/1/soi/influencer_of.json?key=#{@@api_key}&users=#{usernames}"
+      return request(request_uri)
+    end
+    
     def request(request_uri)
       begin
         url = URI.parse(request_uri)
