@@ -1,0 +1,13 @@
+{
+	"status": 200,
+	"users": [
+		{
+			"twitter_screen_name": "sampler",
+			"kscore": "30.01"
+		},
+		{
+			"twitter_screen_name": "another",
+			"kscore": "60.02"
+		}
+	]
+}

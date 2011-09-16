@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+  <user>
+    <twitter_screen_name>sampler</twitter_screen_name>
+    <kscore>30.01</kscore>
+  </user>
+	<user>
+    <twitter_screen_name>another</twitter_screen_name>
+    <kscore>60.02</kscore>
+  </user>
+</users>
