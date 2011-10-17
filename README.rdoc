@@ -31,6 +31,10 @@ Once you have created a Klout object, you can interact with the API to find out 
   k.influencer_of('rails')
   k.influenced_by('dhh, rails')
 
+== Travis Build Status
+
+{<img src="http://travis-ci.org/terra-firma/klout.png" />}[http://travis-ci.org/terra-firma/klout]
+
 == Contributing to Klout
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
