@@ -8,6 +8,6 @@ group :development do
 	gem 'fakeweb'
 	gem 'guard-rspec'
 	gem 'jeweler', '~> 1.6.4'
-	gem 'rcov'
+	gem 'simplecov'
   gem 'rspec'
 end
