@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{klout}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Brian Getting}]
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "klout.gemspec",
     "lib/klout.rb",
     "lib/klout/api.rb",
     "spec/klout/fixtures/klout.json",
@@ -46,7 +47,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<fakeweb>, [">= 0"])
       s.add_development_dependency(%q<guard-rspec>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<simplecov>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
     else
       s.add_dependency(%q<json>, [">= 0"])
@@ -55,7 +56,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<fakeweb>, [">= 0"])
       s.add_dependency(%q<guard-rspec>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<simplecov>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
     end
   else
@@ -65,7 +66,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<fakeweb>, [">= 0"])
     s.add_dependency(%q<guard-rspec>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-    s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<simplecov>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
   end
 end
