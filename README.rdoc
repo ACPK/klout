@@ -34,6 +34,7 @@ Once you have created a Klout object, you can interact with the API to find out 
 == Travis Build Status
 
 {<img src="http://travis-ci.org/terra-firma/klout.png" />}[http://travis-ci.org/terra-firma/klout]
+{<img src="http://gemnasium.com/terra-firma/klout.png" />}[http://gemnasium.com/terra-firma/klout]
 
 == Contributing to Klout
  
