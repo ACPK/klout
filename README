@@ -1,3 +1,5 @@
+This version is no longer being updated. See https://github.com/terra-firma/klout for the latest.
+
 Update the lib file according to the new API of Klout, and handle requests of multiple users ( up to 5).
 -----------------------------------------
 Usage:
