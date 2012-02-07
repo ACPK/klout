@@ -1,4 +1,4 @@
-= Klout
+= Klout {<img src="http://travis-ci.org/terra-firma/klout.png" />}[http://travis-ci.org/terra-firma/klout] {<img src="https://gemnasium.com/terra-firma/klout.png" alt="Dependency Status" />}[https://gemnasium.com/terra-firma/klout]
 
 Klout is a Ruby gem that provides a wrapper for interacting with the {Klout API}[http://developer.klout.com/docs/read/api/API].
 
@@ -30,11 +30,6 @@ Once you have created a Klout object, you can interact with the API to find out 
   
   k.influencer_of('rails')
   k.influenced_by('dhh, rails')
-
-== Travis Build Status
-
-{<img src="http://travis-ci.org/terra-firma/klout.png" />}[http://travis-ci.org/terra-firma/klout]
-{<img src="https://gemnasium.com/terra-firma/klout.png" alt="Dependency Status" />}[https://gemnasium.com/terra-firma/klout]
 
 == Contributing to Klout
  
