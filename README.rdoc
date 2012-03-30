@@ -1,6 +1,6 @@
 = Klout {<img src="http://travis-ci.org/terra-firma/klout.png" />}[http://travis-ci.org/terra-firma/klout] {<img src="https://gemnasium.com/terra-firma/klout.png" alt="Dependency Status" />}[https://gemnasium.com/terra-firma/klout]
 
-Klout is a Ruby gem that provides a wrapper for interacting with the {Klout API}[http://klout.com/s/developers/v2]. <i>This gem only supports {version 2}[http://klout.com/s/developers/v2] of the Klout API. Use the {V1 branch}[https://github.com/terra-firma/klout/tree/v1] if you need legacy support.</i>
+Klout is a Ruby gem that provides a wrapper for interacting with the {Klout API}[http://klout.com/s/developers/v2]. <i>Note: this gem only supports {version 2}[http://klout.com/s/developers/v2] of the Klout API. Use the {V1 branch}[https://github.com/terra-firma/klout/tree/v1] if you need legacy support.</i>
 
 == Requirements
 
@@ -14,6 +14,7 @@ You will need a {Klout API Key}[http://developer.klout.com/member/register] in o
 
 Please refer to the {Klout API V2 Documentation}[http://klout.com/s/developers/v2] for more information about the API, or follow the examples below:
 
+  require 'klout'
   k = Klout::API.new('api_key')
 
 You can also set it to access the API securely:
