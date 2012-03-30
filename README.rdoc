@@ -41,7 +41,10 @@ The {Klout API Documentation}[http://klout.com/s/developers/v2] has great inform
 
 == Errors
 
-When an error is received an instance of +Klout::API::Error+ will be returned so that you can rescue accordingly.
+When an error is received an instance of <code>Klout::API::Error</code> will be returned so that you can rescue accordingly:
+
+  rescue Klout::API::Error > error
+    ...
 
 == Contributing to Klout
  
