@@ -11,15 +11,13 @@ module Klout
       @klout_api = "#{config[:secure] ? 'https' : 'http'}://api.klout.com/v#{config[:version]}"
     end
     
-    def identity(user, network = :tw)
-      user = user.is_a?(Integer) ? "/#{user}?key=#{@api_key}" : "?screenName=#{user}&key=#{@api_key}"
-      api_url = "#{@klout_api}/identity.json/#{network.to_s}#{user}"
-      call(api_url)
+    def identity(id, network = :tw)
+      params = id.is_a?(Integer) ? "/#{id}?key=#{@api_key}" : "?screenName=#{id}&key=#{@api_key}"
+      call("#{@klout_api}/identity.json/#{network.to_s}#{params}")
     end
     
     def users(klout_id, trait)
-      api_url = "#{@klout_api}/users.json/#{klout_id}/#{trait.to_s}?key=#{@api_key}"
-      call(api_url)
+      call("#{@klout_api}/users.json/#{klout_id}/#{trait.to_s}?key=#{@api_key}")
     end
     
     def call(api_url) # :nodoc:

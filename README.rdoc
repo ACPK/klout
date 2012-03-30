@@ -25,10 +25,7 @@ Obtain the +klout_id+ for someone using their Twitter screen name or numerical T
 
   k.identity('screen_name')
   k.identity(12345678)
-
-The default network is Twitter (+:tw+), but you can also specify a different network:
- 
-  k.identity('screen_name', :ks)
+  k.identity('screen_name', :ks)  # Uses the Klout network.
 
 Once you have a +klout_id+ for someone, you can access their Klout score, influence and topics:
 
