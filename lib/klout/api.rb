@@ -15,30 +15,18 @@ module Klout
     def identity(user, network = :tw)
       user = user.is_a? Integer ? "/#{user}" : "?screenName=#{user}"
       api_url = "#{@klout_api}/identity.json/#{network.to_s}#{user}&key=#{@api_key}"
-      response = HTTPI.get(api_url)
-      JSON.parse(response.body)
+      call(api_url)
     end
     
     def users(klout_id, trait)
       api_url = "#{@klout_api}/users.json/#{klout_id}/#{trait.to_s}&key=#{@api_key}"
-      response = HTTPI.get(api_url)
-      JSON.parse(response.body)
+      call(api_url)
     end
     
-    def call(api_method, *args)
-    
+    def call(api_url)
+      response = HTTPI.get(api_url)
+      JSON.parse(response.body)
+      # TODO: Handle errors
+    end
   end
-  
-  # TODO: Figure out error responses and raise Ruby errors when appropriate.
-  #       HTTP error handling (403, 404, 422, 500)
-  #       Klout error responses
 end
-
-# k = Klout::API.new(key)
-# k.identity('bgetting', :tw)
-# k.identity(1234567, :tw)
-# k.identity('bgetting', :ks)
-#
-# k.users(1234abcd567, :score)
-# k.users(1234abcd567, :influence)
-# k.users(1234abcd567, :topics)

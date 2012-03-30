@@ -18,11 +18,11 @@ Please refer to the {Klout API V2 Documentation}[http://klout.com/s/developers/v
 
   k = Klout::API.new('api_key')
 
-There are also configuration options:
+You can also set it to access the API securely:
 
   k = Klout::API.new('api_key', {:secure => true})
 
-Once you have created a Klout object, you will want to get the +klout_id+ for a particular person, using either their Twitter username or Twitter ID:
+Once you have created a Klout object, you will want to get the +klout_id+ for a particular person, using either their Twitter screen name or numeric TwitterID:
 
   k.identity('screen_name')
   k.identity(12345678)
