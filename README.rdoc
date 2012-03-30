@@ -1,8 +1,6 @@
-This gem now only supports V2 of the Klout API. Support for V1 can be found under the {V1 branch}[https://github.com/terra-firma/klout/tree/v1].
- 
 = Klout {<img src="http://travis-ci.org/terra-firma/klout.png" />}[http://travis-ci.org/terra-firma/klout] {<img src="https://gemnasium.com/terra-firma/klout.png" alt="Dependency Status" />}[https://gemnasium.com/terra-firma/klout]
 
-Klout is a Ruby gem that provides a wrapper for interacting with the {Klout API}[http://klout.com/s/developers/v2].
+Klout is a Ruby gem that provides a wrapper for interacting with the {Klout API}[http://klout.com/s/developers/v2]. <i>This gem only supports {version 2}[http://klout.com/s/developers/v2] of the Klout API. Use the {V1 branch}[https://github.com/terra-firma/klout/tree/v1] if you need legacy support.</i>
 
 == Requirements
 
