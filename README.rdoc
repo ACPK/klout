@@ -1,6 +1,8 @@
+This gem now only supports V2 of the Klout API. Support for V1 can be found under the {V1 branch}[https://github.com/terra-firma/klout/tree/v1].
+ 
 = Klout {<img src="http://travis-ci.org/terra-firma/klout.png" />}[http://travis-ci.org/terra-firma/klout] {<img src="https://gemnasium.com/terra-firma/klout.png" alt="Dependency Status" />}[https://gemnasium.com/terra-firma/klout]
 
-Klout is a Ruby gem that provides a wrapper for interacting with the {Klout API}[http://developer.klout.com/docs/read/api/API].
+Klout is a Ruby gem that provides a wrapper for interacting with the {Klout API}[http://klout.com/s/developers/v2].
 
 == Requirements
 
@@ -12,24 +14,31 @@ You will need a {Klout API Key}[http://developer.klout.com/member/register] in o
 
 == Usage
 
-Please refer to the {Klout API Documentation}[http://developer.klout.com/docs/read/api/API] for more information about the API, or follow the examples below:
+Please refer to the {Klout API V2 Documentation}[http://klout.com/s/developers/v2] for more information about the API, or follow the examples below:
 
-  k = Klout::API.new('your_secret_api_key')
+  k = Klout::API.new('api_key')
 
 There are also configuration options:
 
-  k = Klout::API.new('your_secret_api_key', {:format => 'xml', :secure => true})
+  k = Klout::API.new('api_key', {:secure => true})
 
-Once you have created a Klout object, you can interact with the API to find out how much influence certain Twitter users have. You can also pass comma-delimited string of multiple Twitter usernames as well.
+Once you have created a Klout object, you will want to get the +klout_id+ for a particular person, using either their Twitter username or Twitter ID:
 
-  k.klout('dhh')
-  k.klout('dhh, rails')
-  
-  k.show('dhh')
-  k.topics('dhh')
-  
-  k.influencer_of('rails')
-  k.influenced_by('dhh, rails')
+  k.identity('screen_name')
+  k.identity(12345678)
+  k.identity('screen_name', :ks)
+
+You can cache the response of these requests indefinitely, allowing you to store the +klout_id+ for particular people. Once you have a +klout_id+, you can access Klout scores, influences and topics:
+
+  k.users(klout_id, :score)
+  k.users(klout_id, :influence)
+  k.users(klout_id, :topics)
+
+And that's it!
+
+== Caching
+
+The {Klout API V2 Documentation}[http://klout.com/s/developers/v2] has great information about what data can be cached, and for how long.
 
 == Contributing to Klout
  

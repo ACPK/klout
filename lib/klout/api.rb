@@ -12,9 +12,9 @@ module Klout
       @klout_api = "#{config[:secure] ? 'https' : 'http'}://api.klout.com/v#{config[:version]}"
     end
     
-    def identity(user, network = "tw")
-      user = user.is_a? String ? "?screenName=#{user}" : "/#{user}"
-      api_url = "#{@klout_api}/identity.json/#{network}#{user}&key=#{@api_key}"
+    def identity(user, network = :tw)
+      user = user.is_a? Integer ? "/#{user}" : "?screenName=#{user}"
+      api_url = "#{@klout_api}/identity.json/#{network.to_s}#{user}&key=#{@api_key}"
       response = HTTPI.get(api_url)
       JSON.parse(response.body)
     end
