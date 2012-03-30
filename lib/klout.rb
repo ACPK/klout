@@ -1,7 +1,5 @@
-require 'uri'
-require 'net/http'
 require 'rubygems'
+require 'httpi'
 require 'json'
-require 'xmlsimple'
 
 require 'klout/api'

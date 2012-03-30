@@ -8,6 +8,5 @@ RSpec.configure do |config|
     FakeWeb.clean_registry
     @api_key = 'valid-api-key'
     @json_response = File.read(File.expand_path('spec/klout/fixtures/klout.json'))
-    @xml_response = File.read(File.expand_path('spec/klout/fixtures/klout.xml'))
   end
 end
