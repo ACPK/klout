@@ -12,13 +12,13 @@ module Klout
     end
     
     def identity(user, network = :tw)
-      user = user.is_a?(Integer) ? "/#{user}" : "?screenName=#{user}"
-      api_url = "#{@klout_api}/identity.json/#{network.to_s}#{user}&key=#{@api_key}"
+      user = user.is_a?(Integer) ? "/#{user}?key=#{@api_key}" : "?screenName=#{user}&key=#{@api_key}"
+      api_url = "#{@klout_api}/identity.json/#{network.to_s}#{user}"
       call(api_url)
     end
     
     def users(klout_id, trait)
-      api_url = "#{@klout_api}/users.json/#{klout_id}/#{trait.to_s}&key=#{@api_key}"
+      api_url = "#{@klout_api}/users.json/#{klout_id}/#{trait.to_s}?key=#{@api_key}"
       call(api_url)
     end
     
