@@ -1,6 +1,5 @@
 module Klout
   class API
-      
     # Initialize
     def initialize(api_key, config = {})
       defaults = {
@@ -25,14 +24,14 @@ module Klout
     
     def call(api_url) # :nodoc:
       response = HTTPI.get(api_url)
-      response.code.to_i == 200 ? JSON.parse(response.body) : raise(Error.new(response.code, response.body))
+      response.code.to_i == 200 ? JSON.parse(response.body) : raise(API::Error.new(response.code, response.body))
       # TODO: How does Klout return errors now?
     end
-  end
-  
-  class Error < StandardError
-    def initialize(code, message)
-      super "<#{code}> #{message}"
+    
+    class Error < StandardError
+      def initialize(code, message)
+        super "(#{code}) #{message}"
+      end
     end
   end
 end
