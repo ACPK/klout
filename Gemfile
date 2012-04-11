@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'httpi'
+gem 'httparty'
 gem 'json'
 
 group :development do

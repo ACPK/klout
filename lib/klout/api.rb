@@ -1,35 +1,69 @@
 module Klout
   class API
-    # Initialize
-    def initialize(api_key, config = {})
-      defaults = {
-        :secure   => false,
-        :version  => 2
-      }
-      config = defaults.merge(config).freeze
-      @api_key = api_key
-      @klout_api = "#{config[:secure] ? 'https' : 'http'}://api.klout.com/v#{config[:version]}"
+    include HTTParty
+    format :plain
+    default_timeout 30
+    
+    attr_accessor :api_key, :timeout
+    
+    # == Usage
+    #
+    # Initialize with your Klout API key:
+    #
+    # k = Klout::API.new('api-key')
+    #
+    # Or you can set the +ENV['KLOUT_API_KEY']+ environment variable:
+    #
+    # k = Klout::API.new
+    #
+    def initialize(api_key = nil)
+      @api_key = api_key || ENV['KLOUT_API_KEY'] || self.class.api_key
     end
     
+    def base_api_url # :nodoc:
+      "http://api.klout.com/v2"
+    end
+    
+    # === Identity
+    #
+    # Use the +identity+ method to get a user's +klout_id+.
+    # Pass either a numerical Twitter ID (Integer) or a Twitter screen name (String)
+    #
+    # k.identity(500042487)
+    # k.identity('dhh')
+    #
+    # You can also select a different network:
+    #
+    # k.identity('dhh', :ks)
+    #
     def identity(id, network = :tw)
-      params = id.is_a?(Integer) ? "/#{id}?key=#{@api_key}" : "?screenName=#{id}&key=#{@api_key}"
-      call("#{@klout_api}/identity.json/#{network.to_s}#{params}")
+      path = id.is_a?(Integer) ? "#{network}/#{id}?key=#{@api_key}" : "twitter?screenName=#{id}&key=#{@api_key}"
+      call("/identity.json/#{path}")
     end
     
-    def users(klout_id, trait)
-      call("#{@klout_api}/users.json/#{klout_id}/#{trait.to_s}?key=#{@api_key}")
+    # === User
+    #
+    # Use the +user+ method to get information about a user. Pass in a trait
+    # option to get score, influence and topics data:
+    #
+    # k.user(635263)
+    # k.user(635263, :influence)
+    # k.user(635263, :score)
+    # k.user(635263, :topics)
+    #
+    def user(id, trait = nil)
+      lookup = trait.nil? ? '' : "/#{trait.to_s}"
+      call("/user.json/#{id}#{lookup}?key=#{@api_key}")
     end
     
-    def call(api_url) # :nodoc:
-      response = HTTPI.get(api_url)
-      response.code.to_i == 200 ? JSON.parse(response.body) : raise(API::Error.new(response.code, response.body))
-      # TODO: How does Klout return errors now?
+    protected
+    
+    def call(endpoint) # :nodoc:
+      response = self.class.get(base_api_url + endpoint)
+      response.code.to_i == 200 ? JSON.parse(response.body) : raise(API::Error.new("HTTP Response Code: #{response.code}")
     end
     
     class Error < StandardError
-      def initialize(code, message)
-        super "(#{code}) #{message}"
-      end
     end
   end
 end

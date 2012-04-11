@@ -1,5 +1,4 @@
-require 'rubygems'
-require 'httpi'
+require 'httparty'
 require 'json'
 
 require 'klout/api'

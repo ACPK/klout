@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "klout"
   gem.homepage = "http://github.com/terra-firma/klout"
   gem.license = "MIT"
-  gem.summary = %Q{Ruby gem for interacting with the Klout API.}
-  gem.description = %Q{Ruby gem for interacting with the Klout API.}
+  gem.summary = %Q{A Ruby gem for interacting with the Klout API.}
+  gem.description = %Q{Klout is a Ruby gem for interacting with the Klout API.}
   gem.email = "brian@terra-firma-design.com"
   gem.authors = ["Brian Getting"]
   # dependencies defined in Gemfile
