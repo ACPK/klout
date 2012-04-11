@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{klout}
-  s.version = "1.0.1"
+  s.name = "klout"
+  s.version = "2.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Brian Getting}]
-  s.date = %q{2012-02-02}
-  s.description = %q{Ruby gem for interacting with the Klout API.}
-  s.email = %q{brian@terra-firma-design.com}
+  s.authors = ["Brian Getting"]
+  s.date = "2012-04-11"
+  s.description = "Klout is a Ruby gem for interacting with the Klout API."
+  s.email = "brian@terra-firma-design.com"
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
@@ -26,48 +26,51 @@ Gem::Specification.new do |s|
     "klout.gemspec",
     "lib/klout.rb",
     "lib/klout/api.rb",
-    "spec/klout/fixtures/klout.json",
-    "spec/klout/fixtures/klout.xml",
+    "spec/klout/fixtures/identity.json",
+    "spec/klout/fixtures/influence.json",
+    "spec/klout/fixtures/score.json",
+    "spec/klout/fixtures/topics.json",
+    "spec/klout/fixtures/user.json",
     "spec/klout/klout_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/terra-firma/klout}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.8}
-  s.summary = %q{Ruby gem for interacting with the Klout API.}
+  s.homepage = "http://github.com/terra-firma/klout"
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.10"
+  s.summary = "A Ruby gem for interacting with the Klout API."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<httparty>, [">= 0"])
       s.add_runtime_dependency(%q<json>, [">= 0"])
-      s.add_runtime_dependency(%q<xml-simple>, [">= 0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<fakeweb>, [">= 0"])
-      s.add_development_dependency(%q<guard-rspec>, [">= 0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_development_dependency(%q<simplecov>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, [">= 0"])
+      s.add_development_dependency(%q<bundler>, ["> 1.0.0"])
+      s.add_development_dependency(%q<fakeweb>, ["~> 1.3.0"])
+      s.add_development_dependency(%q<guard-rspec>, ["~> 0.7.0"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
+      s.add_development_dependency(%q<simplecov>, ["~> 0.6.1"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.9.0"])
     else
+      s.add_dependency(%q<httparty>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
-      s.add_dependency(%q<xml-simple>, [">= 0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<fakeweb>, [">= 0"])
-      s.add_dependency(%q<guard-rspec>, [">= 0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_dependency(%q<simplecov>, [">= 0"])
-      s.add_dependency(%q<rspec>, [">= 0"])
+      s.add_dependency(%q<bundler>, ["> 1.0.0"])
+      s.add_dependency(%q<fakeweb>, ["~> 1.3.0"])
+      s.add_dependency(%q<guard-rspec>, ["~> 0.7.0"])
+      s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
+      s.add_dependency(%q<simplecov>, ["~> 0.6.1"])
+      s.add_dependency(%q<rspec>, ["~> 2.9.0"])
     end
   else
+    s.add_dependency(%q<httparty>, [">= 0"])
     s.add_dependency(%q<json>, [">= 0"])
-    s.add_dependency(%q<xml-simple>, [">= 0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<fakeweb>, [">= 0"])
-    s.add_dependency(%q<guard-rspec>, [">= 0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-    s.add_dependency(%q<simplecov>, [">= 0"])
-    s.add_dependency(%q<rspec>, [">= 0"])
+    s.add_dependency(%q<bundler>, ["> 1.0.0"])
+    s.add_dependency(%q<fakeweb>, ["~> 1.3.0"])
+    s.add_dependency(%q<guard-rspec>, ["~> 0.7.0"])
+    s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
+    s.add_dependency(%q<simplecov>, ["~> 0.6.1"])
+    s.add_dependency(%q<rspec>, ["~> 2.9.0"])
   end
 end
 
