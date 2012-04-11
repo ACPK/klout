@@ -20,7 +20,7 @@ Please refer to the {Klout API Documentation}[http://klout.com/s/developers/v2] 
 If you use environment variables you don't need to pass anything:
 
   # Automatically looks for ENV['KLOUT_API_KEY']
-  k = Klout::API.new('api_key')
+  k = Klout::API.new()
 
 Obtain the +klout_id+ for someone using their Twitter screen name or numerical Twitter ID:
 
