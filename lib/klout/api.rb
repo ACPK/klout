@@ -17,7 +17,7 @@ module Klout
     # k = Klout::API.new
     #
     def initialize(api_key = nil)
-      @api_key = api_key || ENV['KLOUT_API_KEY'] || self.class.api_key
+      @api_key = api_key || ENV['KLOUT_API_KEY'] || raise(ArgumentError)
     end
     
     def base_api_url # :nodoc:
@@ -60,7 +60,7 @@ module Klout
     
     def call(endpoint) # :nodoc:
       response = self.class.get(base_api_url + endpoint)
-      response.code.to_i == 200 ? JSON.parse(response.body) : raise(API::Error.new("HTTP Response Code: #{response.code}")
+      response.code.to_i == 200 ? JSON.parse(response.body) : raise(API::Error.new("HTTP Response Code: #{response.code}"))
     end
     
     class Error < StandardError

@@ -1,6 +1,8 @@
 {
-	"score": 79.97533416748047,
-	"amplification": 9,
-	"trueReach": 234708,
-	"network": 57.21802520751953
+	"score": 18.162389755249023,
+	"scoreDelta": {
+		"dayChange": -0.09396934509277344,
+		"weekChange": -0.5575828552246094,
+		"monthChange": -0.7959918975830078
+	}
 }
