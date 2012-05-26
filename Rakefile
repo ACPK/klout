@@ -23,7 +23,7 @@ end
 
 desc "Build and release the gem"
 task :release => :build do
-  system "gem push klout-#{CreateSend::VERSION}.gem"
+  system "gem push klout-#{Klout::VERSION}.gem"
 end
 
 task :default => :test

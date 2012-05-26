@@ -15,6 +15,7 @@ You will need a {Klout API Key}[http://developer.klout.com/member/register] in o
 Please refer to the {Klout API Documentation}[http://klout.com/s/developers/v2] for more information about the API, or follow the examples below:
 
   require 'klout'
+  
   Klout.api_key = ENV['KLOUT_API_KEY']
   klout_id = Klout::Identity.find_by_screen_name('screen_name')
   
@@ -36,9 +37,9 @@ The {Klout API Documentation}[http://klout.com/s/developers/v2] has great inform
 Errors are based on the HTTP response of the request, so that you can rescue accordingly:
 
   rescue Klout::ClientError > req
-	rescue Klout::BadRequest > req
-	rescue Klout::NotFound > req
-	rescue Klout::Unauthorized > req
+  rescue Klout::BadRequest > req
+  rescue Klout::NotFound > req
+  rescue Klout::Unauthorized > req
 
 == Contributing to Klout
  
