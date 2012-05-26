@@ -3,7 +3,6 @@ require 'json'
 
 module Klout
   # Represents a user
-  
   class User
     attr_reader :klout_id
     
@@ -23,7 +22,7 @@ module Klout
     
     def topics
       response = get "topics"
-      Hashie::Mash.new(response)
+      response.parsed_response
     end
     
     def influence

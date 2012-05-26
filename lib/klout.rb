@@ -58,12 +58,16 @@ module Klout
     base_uri @@base_uri
 
     class << self
-      # Sets the API key (used to make calls to the Klout API)
+      # Get the API key
+      def api_key; @@api_key end
+      
+      # Set the API key
       def api_key=(api_key)
         return @@api_key unless api_key
         @@api_key = api_key
       end
 
+      # Get the Base URI.
       def base_uri; @@base_uri end
 
       def get(*args); handle_response super end
