@@ -30,10 +30,10 @@ Obtain the +klout_id+ for someone using their Twitter screen name or numerical T
 
 Once you have a +klout_id+ for someone, you can access their Klout score, influence and topics:
 
-  k.users klout_id
-  k.users klout_id, :score
-  k.users klout_id, :influence
-  k.users klout_id, :topics
+  k.user klout_id
+  k.user klout_id, :score
+  k.user klout_id, :influence
+  k.user klout_id, :topics
 
 And that's it!
 
