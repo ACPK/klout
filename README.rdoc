@@ -19,7 +19,7 @@ Please refer to the {Klout API Documentation}[http://klout.com/s/developers/v2] 
   Klout.api_key = ENV['KLOUT_API_KEY']
   klout_id = Klout::Identity.find_by_screen_name('screen_name')
   
-  user = Klout::Identity.new(klout_id)
+  user = Klout::User.new(klout_id.id)
   user.details
   user.score
   user.score.scoreDelta.dayChange
