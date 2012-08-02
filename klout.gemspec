@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.executables = `git ls-files -- bin/*`.split("\n").map{|f| File.basename(f)}
   s.extra_rdoc_files = ["README.rdoc"]
   s.files = `git ls-files`.split("\n")
-  s.homepage = "http://github.com/terra-firma/klout"
+  s.homepage = "http://github.com/tatemae-consultancy/klout"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.summary = %q{A library which implements the complete functionality of of the Klout REST API (v2+).}
