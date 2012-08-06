@@ -38,7 +38,7 @@ module Klout
     
     def uri_for(action = nil)
       action = "/#{action}" if action
-      "/tw-user.json/#{klout_id}#{action}"
+      "/tw-user.json/#{twitter_id}#{action}"
     end
   end
 end
