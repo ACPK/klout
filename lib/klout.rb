@@ -10,6 +10,7 @@ $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 require 'klout/version'
 require 'klout/identity'
 require 'klout/user'
+require 'klout/twuser'
 
 module Klout
   class << self
