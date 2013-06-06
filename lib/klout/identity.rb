@@ -20,6 +20,11 @@ module Klout
         Hashie::Mash.new(response)
       end
       
+      def find_by_facebook_id(third_party_id)
+        response = Klout.get "/identity.json/fb/#{third_party_id}", :query => {key: Klout.api_key}
+        Hashie::Mash.new(response)
+      end
+      
       def find_by_google_plus_id(google_plus_id)
         response = Klout.get "/identity.json/gp/#{google_plus_id}", :query => {key: Klout.api_key}
         Hashie::Mash.new(response)
