@@ -4,12 +4,12 @@ require 'bundler/version'
 require File.expand_path('lib/klout/version')
 
 Gem::Specification.new do |s|
-  s.add_runtime_dependency('hashie')
+  s.add_runtime_dependency('hashie', '~> 3.0.0')
   s.add_runtime_dependency('httparty')
   s.add_runtime_dependency('json')
-  s.add_development_dependency('fakeweb')
-  s.add_development_dependency('guard-rspec')
-  s.add_development_dependency('rspec')
+  s.add_development_dependency('fakeweb', '>= 1.3.0') 
+  s.add_development_dependency('guard-rspec', '>= 0.7.0')
+  s.add_development_dependency('rspec', '>= 2.9.0')
   s.name = "klout"
   s.authors = ["Brian Getting"]
   s.description = %q{Implements the complete functionality of the Klout REST API (v2+).}
