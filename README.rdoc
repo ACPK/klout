@@ -1,6 +1,6 @@
 = Klout
 
-Klout is a Ruby gem that provides a wrapper for interacting with the {Klout API}[http://klout.com/s/developers/v2]. <i>Note: this gem only supports {version 2}[http://klout.com/s/developers/v2] of the Klout API. Use the {V1 branch}[https://github.com/terra-firma/klout/tree/v1] if you need legacy support.</i>
+Klout is a Ruby gem that provides a wrapper for interacting with the {Klout API}[http://klout.com/s/developers/v2]. <i>Note: this gem only supports {version 2}[http://klout.com/s/developers/v2] of the Klout API.
 
 == Requirements
 
@@ -53,6 +53,6 @@ Errors are based on the HTTP response of the request, so that you can rescue acc
 
 == Copyright
 
-Origionally Built by Jason Torres (https://github.com/jasontorres) but updated by Brian Getting (https://github.com/bgetting) at Terra Firma Design & Consulting.
+Originally built by Jason Torres (https://github.com/jasontorres) but updated by Brian Getting (https://github.com/bgetting) at Terra Firma Design & Consulting.
 
 
