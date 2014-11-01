@@ -1,8 +1,0 @@
-lib/klout.rb
-Manifest
-Rakefile
-README
-spec/klout_spec.rb
-spec/spec.opts
-spec/spec_helper.rb
-tasks/rspec.rake

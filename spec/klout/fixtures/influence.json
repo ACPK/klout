@@ -1,0 +1,45 @@
+{
+	"myInfluencers" : [
+	{
+		"entity" : {
+			"id" : "851563",
+			"payload" : {
+				"kloutId" : "851563",
+				"score" : {
+					"score" : 100.0
+				},
+				"topics" : [
+				{
+					"topicData" : {
+						"id" : "8655841127676549162",
+						"displayName" : "Social Media",
+						"name" : "social media",
+						"slug" : "social-media",
+						"imageUrl" : "http://kcdn3.klout.com/static/images/topics/social-media2.png"
+					},
+					"score" : 90.0,
+					"strength" : "strong",
+					"seconds" : 7736654
+				}
+				]
+			}
+		}
+	}
+	],
+	"myInfluencees" : [
+	{
+		"entity" : {
+			"id" : "54606150835198872",
+			"payload" : {
+				"kloutId" : "54606150835198872",
+				"score" : {
+					"score" : 14.543242454528809
+				},
+				"topics" : []
+			}
+		}
+	}
+	],
+	"myInfluencersCount" : 15,
+	"myInfluenceesCount" : 138166
+}

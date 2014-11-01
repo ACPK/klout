@@ -1,70 +1,96 @@
+require 'cgi'
 require 'uri'
-require 'net/http'
-require 'rubygems'
-require 'json'
-$:.unshift(File.dirname(__FILE__)) unless
-  $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
+require 'httparty'
+require 'hashie'
+Hash.send :include, Hashie::Extensions
 
-=begin rdoc
+libdir = File.dirname(__FILE__)
+$LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
-Klout measures influence on topics across the social web to find the people the world listens to
+require 'klout/version'
+require 'klout/identity'
+require 'klout/user'
+require 'klout/twuser'
 
-See http://klout.com for more information about their service
-
-Usage:
-
-Klout.api_key = ""
-Klout.score('jasontorres')
-
-=end
-
-
-class Klout
-  VERSION = '0.1.1'
+module Klout
   class << self
-    @@base_host = "klout.com"
-    
+    # Allow Klout.api_key = "..."
+    def api_key=(api_key)
+      Klout.api_key = api_key
+    end
+
+    def base_uri=(uri)
+      Klout.base_uri uri
+    end
+
+    # Allows the initializer to turn off actually communicating to the REST service for certain environments
+    # Requires fakeweb gem to be installed
+    def disable
+      FakeWeb.register_uri(:any, %r|#{Regexp.escape(Klout.base_uri)}|, :body => '{"Disabled":true}', :content_type => 'application/json; charset=utf-8')
+    end
+  end
+
+  # Represents a Klout API error and contains specific data about the error.
+  class KloutError < StandardError
+    attr_reader :data
+    def initialize(data)
+      @data = Hashie::Mash.new(data)
+      super "The Klout API responded with the following error - #{data}"
+    end
+  end
+
+  class ClientError < StandardError; end
+  class ServerError < StandardError; end
+  class BadRequest < KloutError; end
+  class Unauthorized < StandardError; end
+  class NotFound < ClientError; end
+  class Unavailable < StandardError; end
+
+  class Klout
+    include HTTParty
+
+    @@base_uri = "http://api.klout.com/v2/"
     @@api_key = ""
+    headers({ 
+      'User-Agent' => "klout-rest-#{VERSION}",
+      'Content-Type' => 'application/json; charset=utf-8',
+      'Accept-Encoding' => 'gzip, deflate'
+    })
+    base_uri @@base_uri
 
-    def api_key=(api)
-      @@api_key = api
-    end
-    
-    def api_key
-      @@api_key
-    end
+    class << self
+      # Get the API key
+      def api_key; @@api_key end
+      
+      # Set the API key
+      def api_key=(api_key)
+        return @@api_key unless api_key
+        @@api_key = api_key
+      end
 
-    def score(usernames)
-      request_uri = "http://api.klout.com/1/klout.json?key=#{@@api_key}&users=#{usernames}"
-      return request(request_uri)
-    end
-    
-    def profile(usernames)
-      request_uri = "http://api.klout.com/1/users/show.json?key=#{@@api_key}&users=#{usernames}"
-      return request(request_uri)
-    end
-    
-    def influenced_by(usernames)
-      request_uri = "http://api.klout.com/1/soi/influenced_by.json?key=#{@@api_key}&users=#{usernames}"
-      return request(request_uri)
-    end
-    
-    def influencer_of(usernames)
-      request_uri = "http://api.klout.com/1/soi/influencer_of.json?key=#{@@api_key}&users=#{usernames}"
-      return request(request_uri)
-    end
-    
-    def request(request_uri)
-      begin
-        url = URI.parse(request_uri)
-        response = JSON.parse(Net::HTTP.get(url))
-        if response["status"] == 200
-          response
+      # Get the Base URI.
+      def base_uri; @@base_uri end
+
+      def get(*args); handle_response super end
+      def post(*args); handle_response super end
+      def put(*args); handle_response super end
+      def delete(*args); handle_response super end
+
+      def handle_response(response) # :nodoc:
+        case response.code
+        when 400
+          raise BadRequest.new response.parsed_response
+        when 401
+          raise Unauthorized.new
+        when 404
+          raise NotFound.new
+        when 400...500
+          raise ClientError.new response.parsed_response
+        when 500...600
+          raise ServerError.new
         else
-          nil
+          response
         end
-      rescue => error
-        raise error
       end
     end
   end
