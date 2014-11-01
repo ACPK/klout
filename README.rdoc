@@ -1,0 +1,58 @@
+= Klout
+
+Klout is a Ruby gem that provides a wrapper for interacting with the {Klout API}[http://klout.com/s/developers/v2]. <i>Note: this gem only supports {version 2}[http://klout.com/s/developers/v2] of the Klout API. Use the {V1 branch}[https://github.com/terra-firma/klout/tree/v1] if you need legacy support.</i>
+
+== Requirements
+
+You will need a {Klout API Key}[http://developer.klout.com/member/register] in order to get started.
+
+== Installation
+
+  (sudo) gem install klout
+
+== Usage
+
+Please refer to the {Klout API Documentation}[http://klout.com/s/developers/v2] for more information about the API, or follow the examples below:
+
+  require 'klout'
+  
+  Klout.api_key = ENV['KLOUT_API_KEY']
+  klout_id = Klout::Identity.find_by_screen_name('screen_name')
+  
+  user = Klout::User.new(klout_id.id)
+  user.details
+  user.score
+  user.score.scoreDelta.dayChange
+  user.topics
+  user.influence
+
+And that's it!
+
+== Caching
+
+The {Klout API Documentation}[http://klout.com/s/developers/v2] has great information about what data can be cached safely, and for how long, in order to improve the performance of your app.
+
+== Errors
+
+Errors are based on the HTTP response of the request, so that you can rescue accordingly:
+
+  rescue Klout::ClientError > req
+  rescue Klout::BadRequest > req
+  rescue Klout::NotFound > req
+  rescue Klout::Unauthorized > req
+
+== Contributing to Klout
+ 
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
+* Fork the project.
+* Start a feature/bugfix branch.
+* Commit and push until you are happy with your contribution.
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Copyright
+
+Origionally Built by Jason Torres (https://github.com/jasontorres) but updated by Brian Getting (https://github.com/bgetting) at Terra Firma Design & Consulting.
+
+

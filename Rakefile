@@ -1,15 +1,29 @@
-require 'rubygems'
-require 'echoe'
-require 'fileutils'
-require './lib/klout'
+$LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
+require "bundler/version"
+require "rake/testtask"
+require "./lib/klout"
+require 'rspec/core'
+require 'rspec/core/rake_task'
 
-Echoe.new 'klout', '0.1.0'  do |p|
-  p.author = 'Jason Torres'
-  p.email = 'jason.e.torres@gmail.com'
-  p.url = 'http://github.com/jasontorres/klout'
-  p.description = "Klout - Twitter Analytics"
-  p.runtime_dependencies = ["typhoeus"]
-
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
-Dir["#{File.dirname(__FILE__)}/tasks/*.rake"].sort.each { |ext| load ext }
+RSpec::Core::RakeTask.new(:rcov) do |spec|
+  spec.pattern = 'spec/**/*_spec.rb'
+  spec.rcov = true
+end
+
+task :default => :spec
+
+desc "Build the gem"
+task :build do
+  system "gem build klout.gemspec"
+end
+
+desc "Build and release the gem"
+task :release => :build do
+  system "gem push klout-#{Klout::VERSION}.gem"
+end
+
+task :default => :test
